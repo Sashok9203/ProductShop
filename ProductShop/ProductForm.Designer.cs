@@ -138,7 +138,7 @@
             // actionButton
             // 
             actionButton.DialogResult = DialogResult.OK;
-            actionButton.Location = new Point(43, 201);
+            actionButton.Location = new Point(45, 200);
             actionButton.Name = "actionButton";
             actionButton.Size = new Size(105, 23);
             actionButton.TabIndex = 10;
@@ -149,7 +149,7 @@
             // cancel
             // 
             cancel.DialogResult = DialogResult.Cancel;
-            cancel.Location = new Point(180, 201);
+            cancel.Location = new Point(180, 200);
             cancel.Name = "cancel";
             cancel.Size = new Size(105, 23);
             cancel.TabIndex = 11;

@@ -18,10 +18,13 @@ namespace WinFormsApp1
             Add
         }
 
-        List<Product> productList;
+        readonly List<Product> productList;
+
+        readonly ProductForm productForm; 
 
         public MainForm()
         {
+            productForm = new();
             productList = new();
             InitializeComponent();
             sourceUpdate();
@@ -29,10 +32,9 @@ namespace WinFormsApp1
 
         private void addButtonClk(object sender, EventArgs e)
         {
-            ProductForm pf = new();
-            if (pf.ShowDialog() == DialogResult.OK)
+            if (productForm.ShowDialog() == DialogResult.OK)
             {
-                productList.Add(pf.Product);
+                productList.Add(productForm.Product);
                 sourceUpdate();
             }
         }
@@ -40,11 +42,8 @@ namespace WinFormsApp1
         private void editButtonClk(object sender, EventArgs e)
         {
             if (productsList.SelectedIndex >= 0)
-            {
-                ProductForm pf = new(productList[productsList.SelectedIndex], Actions.Edit);
-                if(pf.ShowDialog() == DialogResult.OK)
+              if(productForm.ShowDialog(productList[productsList.SelectedIndex], Actions.Edit) == DialogResult.OK)
                     sourceUpdate();
-            }
         }
 
         private void delButtonClk(object sender, EventArgs e)
@@ -60,8 +59,7 @@ namespace WinFormsApp1
         {
             if (productsList.SelectedIndex >= 0)
             {
-                ProductForm pf = new(productList[productsList.SelectedIndex], Actions.Show);
-                pf.ShowDialog();
+                productForm.ShowDialog(productList[productsList.SelectedIndex], Actions.Show);
                 productsList.SelectedIndex = -1;
             }
         }

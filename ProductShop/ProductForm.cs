@@ -16,19 +16,25 @@ namespace WinFormsApp1
 
         private MainForm.Actions action;
 
-        public ProductForm(Product product, MainForm.Actions action)
-        {
-            InitializeComponent();
-            this.action = action;
-            Product = product;
-            formChange();
-        }
 
         public ProductForm()
         {
             InitializeComponent();
+        }
+
+        public DialogResult ShowDialog(Product product, MainForm.Actions action)
+        {
+            this.action = action;
+            Product = product;
+            formChange();
+            return base.ShowDialog();
+        }
+
+        public new DialogResult ShowDialog()
+        {
             action = MainForm.Actions.Add;
             formChange();
+            return base.ShowDialog();
         }
 
         private void ButtonClick(object sender, EventArgs e)
@@ -46,6 +52,16 @@ namespace WinFormsApp1
                     Product.Price = (double)priceNumericUpDown.Value;
                     Product.Discount = (double)discountNumericUpDown.Value;
                     Product.Count = (int)countNumericUpDown.Value;
+                    break;
+
+                case MainForm.Actions.Show:
+                    cancel.Show();
+                    actionButton.Location = new(45, 200);
+                    nameTextBox.Enabled = true;
+                    countryComboBox.Enabled = true;
+                    priceNumericUpDown.Enabled = true;
+                    discountNumericUpDown.Enabled = true;
+                    countNumericUpDown.Enabled = true;
                     break;
             }
             Close();
