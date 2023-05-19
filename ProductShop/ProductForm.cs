@@ -37,38 +37,6 @@ namespace WinFormsApp1
             return base.ShowDialog();
         }
 
-        private void ButtonClick(object sender, EventArgs e)
-        {
-            switch (action)
-            {
-                case MainForm.Actions.Add:
-                    Product = new Product(nameTextBox.Text, countryComboBox.Text, (double)priceNumericUpDown.Value,
-                            (double)discountNumericUpDown.Value, (int)countNumericUpDown.Value);
-                    break;
-
-                case MainForm.Actions.Edit:
-                    Product.Name = nameTextBox.Text;
-                    Product.Country = countryComboBox.Text;
-                    Product.Price = (double)priceNumericUpDown.Value;
-                    Product.Discount = (double)discountNumericUpDown.Value;
-                    Product.Count = (int)countNumericUpDown.Value;
-                    break;
-
-                case MainForm.Actions.Show:
-                    cancel.Show();
-                    actionButton.Location = new(45, 200);
-                    nameTextBox.Enabled = true;
-                    countryComboBox.Enabled = true;
-                    priceNumericUpDown.Enabled = true;
-                    discountNumericUpDown.Enabled = true;
-                    countNumericUpDown.Enabled = true;
-                    break;
-            }
-            Close();
-        }
-
-        private void cancelClick(object sender, EventArgs e) => Close();
-
         private void formChange()
         {
             switch (action)
@@ -100,6 +68,46 @@ namespace WinFormsApp1
             priceNumericUpDown.Value = (decimal)Product.Price;
             discountNumericUpDown.Value = (decimal)Product.Discount;
             countNumericUpDown.Value = Product.Count;
+        }
+
+        private bool isFieldsEmpty()
+        {
+            bool result = string.IsNullOrEmpty(nameTextBox.Text) || string.IsNullOrEmpty(countryComboBox.Text);
+            if (result) MessageBox.Show("Fill in all fields", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return result;
+        }
+
+        private void actionButton_Click(object sender, EventArgs e)
+        {
+            switch (action)
+            {
+                case MainForm.Actions.Add:
+                    if (isFieldsEmpty()) return;
+                    Product = new Product(nameTextBox.Text, countryComboBox.Text, (double)priceNumericUpDown.Value,
+                            (double)discountNumericUpDown.Value, (int)countNumericUpDown.Value);
+                    break;
+
+                case MainForm.Actions.Edit:
+                    if (isFieldsEmpty()) return;
+                    Product.Name = nameTextBox.Text;
+                    Product.Country = countryComboBox.Text;
+                    Product.Price = (double)priceNumericUpDown.Value;
+                    Product.Discount = (double)discountNumericUpDown.Value;
+                    Product.Count = (int)countNumericUpDown.Value;
+                    break;
+
+                case MainForm.Actions.Show:
+                    cancel.Show();
+                    actionButton.Location = new(45, 200);
+                    nameTextBox.Enabled = true;
+                    countryComboBox.Enabled = true;
+                    priceNumericUpDown.Enabled = true;
+                    discountNumericUpDown.Enabled = true;
+                    countNumericUpDown.Enabled = true;
+                    break;
+            }
+            DialogResult = DialogResult.OK;
+            Close();
         }
     }
 }

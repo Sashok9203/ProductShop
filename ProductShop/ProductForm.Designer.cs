@@ -137,14 +137,13 @@
             // 
             // actionButton
             // 
-            actionButton.DialogResult = DialogResult.OK;
             actionButton.Location = new Point(45, 200);
             actionButton.Name = "actionButton";
             actionButton.Size = new Size(105, 23);
             actionButton.TabIndex = 10;
             actionButton.Text = "button1";
             actionButton.UseVisualStyleBackColor = true;
-            actionButton.Click += ButtonClick;
+            actionButton.Click += actionButton_Click;
             // 
             // cancel
             // 
@@ -155,7 +154,6 @@
             cancel.TabIndex = 11;
             cancel.Text = "Cancel";
             cancel.UseVisualStyleBackColor = true;
-            cancel.Click += cancelClick;
             // 
             // ProductForm
             // 
