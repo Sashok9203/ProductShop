@@ -20,7 +20,7 @@ namespace WinFormsApp1
 
         readonly List<Product> productList;
 
-        readonly ProductForm productForm; 
+        readonly ProductForm productForm;
 
         public MainForm()
         {
@@ -42,7 +42,7 @@ namespace WinFormsApp1
         private void editButtonClk(object sender, EventArgs e)
         {
             if (productsList.SelectedIndex >= 0)
-              if(productForm.ShowDialog(productList[productsList.SelectedIndex], Actions.Edit) == DialogResult.OK)
+                if (productForm.ShowDialog(productList[productsList.SelectedIndex], Actions.Edit) == DialogResult.OK)
                     sourceUpdate();
         }
 

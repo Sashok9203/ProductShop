@@ -134,6 +134,7 @@
             MaximumSize = new Size(500, 290);
             MinimumSize = new Size(500, 290);
             Name = "MainForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Shop";
             ResumeLayout(false);
             PerformLayout();
