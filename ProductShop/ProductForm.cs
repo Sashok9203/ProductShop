@@ -39,11 +39,17 @@ namespace WinFormsApp1
 
         private void formChange()
         {
+            
             switch (action)
             {
                 case MainForm.Actions.Add:
                     actionButton.Text = "Create";
                     Text = "Add Product";
+                    nameTextBox.Text = "";
+                    countryComboBox.SelectedItem = null; ;
+                    priceNumericUpDown.Value = 0;
+                    discountNumericUpDown.Value = 0;
+                    countNumericUpDown.Value = 0;
                     return;
 
                 case MainForm.Actions.Edit:
